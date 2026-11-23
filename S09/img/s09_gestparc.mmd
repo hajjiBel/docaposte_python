@@ -1,0 +1,42 @@
+classDiagram
+    direction TB
+    class Equipment {
+        <<abstract>>
+        +CATEGORY: str$
+        +PREFIX: str$
+        +asset_tag: str
+        +brand: str
+        +model: str
+        +price: float
+        +maintenance_interval_months()* int
+        +specs()* str
+        +to_dict() dict
+        +__str__() str
+    }
+    class NetworkMixin {
+        +ip_address: str | None
+        +is_valid_ip(ip)$ bool
+    }
+    class Laptop {
+        +ram_gb: int
+        +screen_inches: float
+    }
+    class Server {
+        +cpu_count: int
+        +ram_gb: int
+        +rack: str
+    }
+    class Printer {
+        +is_color: bool
+        +pages_printed: int
+    }
+    class NetworkDevice {
+        +port_count: int
+    }
+    Equipment <|-- Laptop
+    Equipment <|-- Server
+    Equipment <|-- Printer
+    Equipment <|-- NetworkDevice
+    NetworkMixin <|-- Server
+    NetworkMixin <|-- Printer
+    NetworkMixin <|-- NetworkDevice

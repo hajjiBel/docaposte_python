@@ -1,0 +1,26 @@
+classDiagram
+    direction TB
+    class Character {
+        +entity: Entity
+        +attack: int
+        +defense: int
+        +strike(target: Character) int
+        +__str__() str
+    }
+    class Player {
+        +xp: int
+        +inventory: list~Item~
+        +pick_up(item) None
+        +use(item_name) str
+    }
+    class Enemy {
+        +xp: int
+        +loot: Item | None
+    }
+    class Boss {
+        +enraged: bool
+        +strike(target) int
+    }
+    Character <|-- Player
+    Character <|-- Enemy
+    Enemy <|-- Boss
